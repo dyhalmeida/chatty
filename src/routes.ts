@@ -16,5 +16,6 @@ routes.post('/users', usersController.create);
 import { MessagesController } from './controllers/MessagesController';
 const messagesController = new MessagesController();
 routes.post('/messages', messagesController.create);
+routes.get('/messages/:user_id', messagesController.index);
 
 export { routes };

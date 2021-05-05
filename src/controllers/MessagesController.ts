@@ -19,6 +19,23 @@ class MessagesController {
       });
     }
   }
+  async index(request: Request, response: Response) {
+    const { user_id } = request.params;
+    const messagesService = new MessagesService();
+    try {
+      const messages = await messagesService.index(user_id);
+      return response.status(200).json({
+        message: 'Mensagens listadas com sucesso',
+        data: messages,
+      });
+    } catch (error) {
+      console.error(error.message);
+      return response.status(500).json({
+        message: 'Erro interno no servidor',
+        data: {},
+      });
+    }
+  }
 }
 
 export { MessagesController };
