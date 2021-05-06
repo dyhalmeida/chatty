@@ -26,6 +26,25 @@ class SettingsController {
       });
     }
   }
+
+  async update(request: Request, response: Response) {
+    const { username } = request.params;
+    const { chat } = request.body;
+    const settingsService = new SettingsService();
+    try {
+      await settingsService.update(username, chat);
+      return response.json({
+        message: 'Estado do chat atualizado com sucesso',
+        data: {},
+      });
+    } catch (error) {
+      console.error(error.message);
+      return response.status(500).json({
+        message: 'Erro interno no servidor',
+        data: {},
+      });
+    }
+  }
 }
 
 export { SettingsController };
