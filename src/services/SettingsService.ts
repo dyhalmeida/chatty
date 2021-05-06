@@ -38,6 +38,11 @@ class SettingsService {
       .where('username = :username', { username })
       .execute();
   }
+
+  async show(username: string) {
+    const settings = await this.settingsRepository.findOne({ username });
+    return settings;
+  }
 }
 
 export { SettingsService };

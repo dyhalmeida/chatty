@@ -6,6 +6,7 @@ const routes = Router();
 import { SettingsController } from './controllers/SettingsController';
 const settingsController = new SettingsController();
 routes.post('/settings', settingsController.create);
+routes.get('/settings/:username', settingsController.show);
 routes.put('/settings/:username', settingsController.update);
 
 /** Users Routes */

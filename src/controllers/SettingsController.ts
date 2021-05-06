@@ -27,6 +27,24 @@ class SettingsController {
     }
   }
 
+  async show(request: Request, response: Response) {
+    const { username } = request.params;
+    const settingsService = new SettingsService();
+    try {
+      const settings = await settingsService.show(username);
+      return response.json({
+        message: 'Configuração carregadas',
+        data: { ...settings },
+      });
+    } catch (error) {
+      console.error(error.message);
+      return response.status(500).json({
+        message: 'Erro interno no servidor',
+        data: {},
+      });
+    }
+  }
+
   async update(request: Request, response: Response) {
     const { username } = request.params;
     const { chat } = request.body;
