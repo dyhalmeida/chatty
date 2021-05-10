@@ -17,6 +17,10 @@ server.get('/pages/client', (_, response) => {
   return response.render('html/client.html');
 });
 
+server.get('/pages/admin', (_, response) => {
+  return response.render('html/admin.html');
+});
+
 server.use(express.json());
 
 server.use(routes);
